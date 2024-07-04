@@ -90,7 +90,12 @@ def splitScore(matchResult):
     if A_score is None or B_score is None:
         return A, A_score, B, B_score, None
     else:
-        winner = A if A_score > B_score else B
+        if A_score == B_score:
+            winner = 'Draw'
+        elif A_score > B_score:
+            winner = A
+        else:
+            winner = B
         return A, A_score, B, B_score, winner
 
 
