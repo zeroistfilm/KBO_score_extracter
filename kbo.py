@@ -51,13 +51,18 @@ def getScore(year, month):
         note_soup = BeautifulSoup(row[note_index]['Text'], 'html.parser')
         note = note_soup.get_text()
 
-        # Extract date
-        month = current_date.split('.')[0]
-        day = current_date.split('.')[1].split('(')[0]
+
+        month = int(current_date.split('.')[0])
+        day = int(current_date.split('.')[1].split('(')[0])
+
+        # 2018년 10월 6일 KIA 5 vs 7 SK 경기 정보만 오류남 (시간이 없음)
+        if year ==2018 and month == 10 and time == "":
+            time ="18:45"
+
         hour = time.split(':')[0]
         minute = time.split(':')[1]
         KST = datetime.timezone(datetime.timedelta(hours=9))
-        gameTime = datetime.datetime(year, int(month), int(day), int(hour), int(minute), tzinfo=KST)
+        gameTime = datetime.datetime(year, month, day, int(hour), int(minute), tzinfo=KST)
 
         # Extract teams and result
         A, AScore, B, BScore, winner = splitScore(teams_result)
@@ -90,6 +95,6 @@ def splitScore(matchResult):
 
 
 
-for year in range(2001, 2024):
+for year in range(2001, 2025):
     for month in range(1, 13):
-        getScore(year, month)
+        getScore(year,month)
