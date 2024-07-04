@@ -66,7 +66,7 @@ def getScore(year, month):
 
         # Extract teams and result
         A, AScore, B, BScore, winner = splitScore(teams_result)
-        print(f"{gameTime} {A} vs {B} {AScore} : {BScore} Winner: {winner} {note}")
+        print(f"{gameTime} {A} vs {B} {AScore} : {BScore} Winner: {winner} {note}  ")
 
 
 def splitScore(matchResult):
